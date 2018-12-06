@@ -1,0 +1,16 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.idea
+/gradlew.bat
+/app/release
+app/enreader.jks
+app/src/androidTest/java/com/arun/ebook/ExampleInstrumentedTest.java
+app/src/test/java/com/arun/ebook/ExampleUnitTest.java
+gradlew

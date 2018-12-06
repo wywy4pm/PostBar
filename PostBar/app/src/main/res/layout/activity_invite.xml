@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InviteActivity">
+
+    <EditText
+        android:id="@+id/inviteCodeEdit"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/shape_gray_radius"
+        android:gravity="start|center_vertical"
+        android:hint="@string/put_invite"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/confirmBtn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/confirmBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_btn"
+        android:onClick="joinBarConfirm"
+        android:paddingBottom="8dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="8dp"
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
