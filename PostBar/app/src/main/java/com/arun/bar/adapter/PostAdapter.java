@@ -47,7 +47,7 @@ public class PostAdapter extends RecyclerView.Adapter {
     }
 
     private static class PostHolder extends RecyclerView.ViewHolder {
-        private TextView post_title, post_time, post_author;
+        private TextView post_title, post_time, post_author, post_content;
         private LinearLayout imgLayout;
 
         private PostHolder(View itemView) {
@@ -55,12 +55,14 @@ public class PostAdapter extends RecyclerView.Adapter {
             post_title = itemView.findViewById(R.id.post_title);
             post_time = itemView.findViewById(R.id.post_time);
             post_author = itemView.findViewById(R.id.post_author);
+            post_content = itemView.findViewById(R.id.post_content);
             imgLayout = itemView.findViewById(R.id.imgLayout);
         }
 
         private void setData(PostItem postBodyBean) {
             if (postBodyBean != null) {
                 post_title.setText(postBodyBean.post_title);
+                post_content.setText(postBodyBean.main_content);
                 post_time.setText(postBodyBean.post_time);
                 post_author.setText(postBodyBean.post_owner);
                 /*if (postBodyBean.img_list != null && postBodyBean.img_list.size() > 0) {

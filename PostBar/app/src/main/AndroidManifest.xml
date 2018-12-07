@@ -17,16 +17,18 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".RegisterActivity"
             android:configChanges="keyboardHidden|orientation">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,16 +38,24 @@
         <activity
             android:name=".JoinBarActivity"
             android:configChanges="keyboardHidden|orientation">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".AddBarActivity"
-            android:configChanges="keyboardHidden|orientation"></activity>
-        <activity android:name=".InviteActivity"></activity>
+            android:configChanges="keyboardHidden|orientation" />
+        <activity
+            android:name=".InviteActivity"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity
+            android:name=".PostActivity"
+            android:configChanges="keyboardHidden|orientation" />
     </application>
 
 </manifest>

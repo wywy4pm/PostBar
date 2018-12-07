@@ -6,6 +6,7 @@ public class PostItem {
     public String post_owner;
     public String post_title;
     public String post_time;
+    public String main_content;
     public String userName;
     public String uuid;
     public int post_state;

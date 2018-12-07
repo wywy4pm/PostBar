@@ -1,12 +1,15 @@
 package com.arun.bar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.arun.bar.common.Constant;
 import com.arun.bar.utils.SharedPreferencesUtils;
 
 public class JoinBarActivity extends BaseActivity {
@@ -51,11 +54,26 @@ public class JoinBarActivity extends BaseActivity {
     }
 
     public void addBar(View view) {
-        AddBarActivity.jumpToAddBar(this);
+        AddBarActivity.jumpToAddBarForResult(this, Constant.REQUEST_CODE_ADD_BAR);
     }
 
     public void joinBar(View view) {
         InviteActivity.jumpToInvite(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("TAG", "JoinBar onActivityResult requestCode = " + requestCode);
+        if (requestCode == Constant.REQUEST_CODE_ADD_BAR) {
+            if (resultCode == Activity.RESULT_OK) {
+                finish();
+                if (data != null && data.getExtras() != null && data.getExtras().containsKey(Constant.INTENT_BAR_NAME)) {
+                    String barName = data.getExtras().getString(Constant.INTENT_BAR_NAME);
+                    MainActivity.jumpToMain(this, barName);
+                }
+            }
+        }
     }
 
     /*private boolean isJoinBar() {

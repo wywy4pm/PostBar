@@ -1,6 +1,7 @@
 package com.arun.bar.model;
 
 import com.arun.bar.bean.request.RegisterRequest;
+import com.arun.bar.bean.request.UserUpdateRequest;
 import com.arun.bar.listener.CommonRequestListener;
 import com.arun.bar.retrofit.RetrofitInit;
 
@@ -23,5 +24,10 @@ public class UserModel extends BaseModel {
     public void register(String phoneNum, CommonRequestListener listener) {
         RegisterRequest registerRequest = new RegisterRequest(phoneNum);
         request(RetrofitInit.getApi().register(registerRequest), listener);
+    }
+
+    public void updateUser(String uuid, String nickName, CommonRequestListener listener) {
+        UserUpdateRequest userUpdateRequest = new UserUpdateRequest(uuid, nickName);
+        request(RetrofitInit.getApi().updateUser(userUpdateRequest), listener);
     }
 }

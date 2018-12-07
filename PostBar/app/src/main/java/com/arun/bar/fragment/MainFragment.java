@@ -118,4 +118,12 @@ public class MainFragment extends BaseFragment implements CommonView<List<PostIt
             postAdapter.notifyDataSetChanged();
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mainPresenter != null) {
+            mainPresenter.detachView();
+        }
+    }
 }

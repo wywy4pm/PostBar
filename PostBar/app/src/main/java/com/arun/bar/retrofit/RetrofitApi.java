@@ -7,6 +7,7 @@ import com.arun.bar.bean.RegisterBodyBean;
 import com.arun.bar.bean.request.BarAddRequest;
 import com.arun.bar.bean.request.PostListRequest;
 import com.arun.bar.bean.request.RegisterRequest;
+import com.arun.bar.bean.request.UserUpdateRequest;
 
 import java.util.List;
 
@@ -26,6 +27,10 @@ public interface RetrofitApi {
     @Headers({"Content-Type:application/json;charset=UTF-8"})
     @POST(RetrofitUrl.BAR_ADD)
     Observable<CommonApiResponse> barAdd(@Body BarAddRequest barAddRequest);
+
+    @Headers({"Content-Type:application/json;charset=UTF-8"})
+    @POST(RetrofitUrl.USER_UPDATE)
+    Observable<CommonApiResponse> updateUser(@Body UserUpdateRequest userUpdateRequest);
 
     @Headers({"Content-Type:application/json;charset=UTF-8"})
     @POST(RetrofitUrl.POST_LIST)
