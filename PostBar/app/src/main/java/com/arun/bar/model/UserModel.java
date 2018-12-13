@@ -30,4 +30,8 @@ public class UserModel extends BaseModel {
         UserUpdateRequest userUpdateRequest = new UserUpdateRequest(uuid, nickName);
         request(RetrofitInit.getApi().updateUser(userUpdateRequest), listener);
     }
+
+    public void joinBar(String user_uuid, String inviteCode, CommonRequestListener listener) {
+        request(RetrofitInit.getApi().joinBar(user_uuid), listener);
+    }
 }

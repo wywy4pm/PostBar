@@ -133,6 +133,23 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         return userId;
     }
 
+    public void setBack(View backView) {
+        backView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
+    public void setBack() {
+        image_back = findViewById(R.id.image_back);
+        if (image_back != null) {
+            image_back.setVisibility(View.VISIBLE);
+            setBack(image_back);
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

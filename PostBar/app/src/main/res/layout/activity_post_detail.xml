@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostDetailActivity">
+
+    <include
+        android:id="@+id/layout_title"
+        layout="@layout/layout_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/layout_add_comment"
+        app:layout_constraintTop_toBottomOf="@+id/layout_title" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/layout_add_comment"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/bg_line"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <EditText
+            android:id="@+id/edit_add_comment"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/btn_add_comment"
+            android:background="@drawable/shape_btn_circle_stroke"
+            android:gravity="center_vertical"
+            android:hint="发表评论..."
+            android:lineSpacingExtra="0dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/charcoalgrey"
+            android:textColorHint="@color/login_text"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/btn_add_comment"
+            android:layout_width="67dp"
+            android:layout_height="37dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/shape_btn_reply"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:onClick="sendComment"/>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

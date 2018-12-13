@@ -9,22 +9,32 @@ import android.util.Log;
 import com.arun.bar.R;
 import com.arun.bar.adapter.PostAdapter;
 import com.arun.bar.bean.PostItem;
+import com.arun.bar.bean.PostListData;
 import com.arun.bar.common.Constant;
+import com.arun.bar.event.UpdateMainEvent;
 import com.arun.bar.presenter.MainPresenter;
+import com.arun.bar.utils.SharedPreferencesUtils;
 import com.arun.bar.view.CommonView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainFragment extends BaseFragment implements CommonView<List<PostItem>> {
+public class MainFragment extends BaseFragment implements CommonView<PostListData> {
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
     private List<PostItem> postList = new ArrayList<>();
     private MainPresenter mainPresenter;
     private String barName;
+    private String bar_uuid;
     private int currentPage;
     private static final int PAGE_SIZE = 10;
     private boolean pagination;
+    private int allCount;
+    private int currentAllCount;
 
     public static MainFragment newInstance(String barName) {
         MainFragment mainFragment = new MainFragment();
@@ -36,6 +46,7 @@ public class MainFragment extends BaseFragment implements CommonView<List<PostIt
 
     @Override
     protected int preparedCreate(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
         return R.layout.fragment_main;
     }
 
@@ -81,12 +92,22 @@ public class MainFragment extends BaseFragment implements CommonView<List<PostIt
         if (getArguments() != null && getArguments().containsKey(Constant.INTENT_BAR_NAME)) {
             barName = getArguments().getString(Constant.INTENT_BAR_NAME);
         }
+        if (getActivity() != null) {
+            bar_uuid = SharedPreferencesUtils.getConfigString(getActivity(), SharedPreferencesUtils.KEY_USER_BAR_ID);
+        }
         if (!TextUtils.isEmpty(userId)) {
             mainPresenter = new MainPresenter();
             mainPresenter.attachView(this);
-            pagination = false;
-            getData();
+            refreshData();
         }
+    }
+
+    private void refreshData() {
+        allCount = 0;
+        currentAllCount = 0;
+        currentPage = 0;
+        pagination = false;
+        getData();
     }
 
     private void getMoreData() {
@@ -98,32 +119,49 @@ public class MainFragment extends BaseFragment implements CommonView<List<PostIt
 
     private void getData() {
         if (mainPresenter != null) {
-            mainPresenter.getPostList(userId, currentPage, PAGE_SIZE, true);
+            if (allCount == 0 || currentAllCount < allCount) {
+                mainPresenter.getPostList(bar_uuid, currentPage, PAGE_SIZE, pagination);
+            }
         }
     }
 
     @Override
-    public void refresh(List<PostItem> data) {
-        if (data != null && data.size() > 0) {
-            postList.clear();
-            postList.addAll(data);
-            postAdapter.notifyDataSetChanged();
+    public void refresh(PostListData postListData) {
+        if (postListData != null) {
+            allCount = postListData.total;
+            if (postListData.data != null && postListData.data.size() > 0) {
+                postList.clear();
+                postList.addAll(postListData.data);
+                currentAllCount += postListData.data.size();
+                postAdapter.notifyDataSetChanged();
+            }
         }
     }
 
     @Override
-    public void refreshMore(List<PostItem> data) {
-        if (data != null && data.size() > 0) {
-            postList.addAll(data);
-            postAdapter.notifyDataSetChanged();
+    public void refreshMore(PostListData postListData) {
+        if (postListData != null) {
+            allCount = postListData.total;
+            if (postListData.data != null && postListData.data.size() > 0) {
+                postList.addAll(postListData.data);
+                currentAllCount += postListData.data.size();
+                postAdapter.notifyDataSetChanged();
+            }
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
         if (mainPresenter != null) {
             mainPresenter.detachView();
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void updateMainList(UpdateMainEvent updateMainEvent) {
+        Log.d("TAG", "updateMainList");
+        refreshData();
     }
 }

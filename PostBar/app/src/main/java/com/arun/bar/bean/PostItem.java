@@ -1,9 +1,10 @@
 package com.arun.bar.bean;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class PostItem {
+public class PostItem implements Serializable{
     public String post_owner;
+    public String post_owner_nick_name;
     public String post_title;
     public String post_time;
     public String main_content;
@@ -13,5 +14,5 @@ public class PostItem {
     public String post_state_name;
     public int post_level;
     public String post_level_name;
-    public List<String> img_list;
+    public String imgs;
 }

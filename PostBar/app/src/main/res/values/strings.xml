@@ -29,5 +29,22 @@
     <string name="tips_put_nick_name">昵称不能为空</string>
 
     <string name="put_invite">请输入邀请码</string>
+    <string name="put_invite_tips">邀请码不能为空</string>
     <string name="tips_bar_add_success">新建吧成功</string>
+
+    <string name="invite_new_user">邀请吧成员</string>
+    <string name="invite_price_tips">填写进吧价格</string>
+    <string name="invite_yuan">元</string>
+    <string name="invite_price_charges">（平台将抽佣5%）</string>
+    <string name="invite_touch_tips">长按识别二维码</string>
+    <string name="invite_create_poster">生成邀请海报</string>
+    <string name="invite_save_poster">保存邀请海报</string>
+    <string name="invite_save_poster_tips">保存后发送给微信好友即可</string>
+    <string name="invite_save_tips">请填写进吧价格</string>
+    <string name="invite_poster_title">%1$s\n邀请函</string>
+
+    <string name="all_reply">全部回复</string>
+    <string name="reply_success">评论成功</string>
+    <string name="reply_empty_tips">评论内容不能为空</string>
+
 </resources>

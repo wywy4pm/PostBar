@@ -12,18 +12,18 @@ public class MainPresenter extends BasePresenter<CommonView> {
         super();
     }
 
-    public void getPostList(String uuid, int currentPage, int pageSize, final boolean pagination) {
+    public void getPostList(String bar_uuid, int currentPage, int pageSize, final boolean pagination) {
         PostModel.getInstance().getPostList(
-                uuid, currentPage, pageSize, pagination, new RequestListenerImpl(getMvpView(), this) {
+                bar_uuid, currentPage, pageSize, pagination, new RequestListenerImpl(getMvpView(), this) {
                     @SuppressWarnings("unchecked")
                     @Override
                     public void onSuccess(CommonApiResponse data) {
                         if (getMvpView() != null && data != null && data.status == ErrorCode.SUCCESS) {
                             if (data.data != null && data.data instanceof PostListData) {
                                 if (!pagination) {
-                                    getMvpView().refresh(((PostListData) data.data).data);
+                                    getMvpView().refresh(data.data);
                                 } else {
-                                    getMvpView().refreshMore(((PostListData) data.data).data);
+                                    getMvpView().refreshMore(data.data);
                                 }
                             }
                         }

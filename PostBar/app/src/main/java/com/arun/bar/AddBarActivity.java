@@ -23,6 +23,7 @@ public class AddBarActivity extends BaseActivity implements CommonView3 {
     private String nickName;
     private boolean isBarNameSuccess;
     private boolean isNickNameSuccess;
+    private String bar_uuid;
 
     public static void jumpToAddBarForResult(Context context, int requestCode) {
         Intent intent = new Intent(context, AddBarActivity.class);
@@ -62,6 +63,9 @@ public class AddBarActivity extends BaseActivity implements CommonView3 {
     public void refresh(int type, Object data) {
         if (type == BarPresenter.TYPE_BAR_ADD) {
             isBarNameSuccess = true;
+            if (data instanceof String) {
+                bar_uuid = (String) data;
+            }
             SharedPreferencesUtils.setConfigString(this, SharedPreferencesUtils.KEY_USER_BAR, barName);
         } else if (type == BarPresenter.TYPE_USER_UPDATE) {
             isNickNameSuccess = true;
@@ -70,6 +74,9 @@ public class AddBarActivity extends BaseActivity implements CommonView3 {
         Log.d("TAG", "AddBar refresh isBarNameSuccess = " + isBarNameSuccess + "  isNickNameSuccess = " + isNickNameSuccess);
         if (isBarNameSuccess && isNickNameSuccess) {
             showToast(R.string.tips_bar_add_success);
+            if (!TextUtils.isEmpty(bar_uuid)) {
+                SharedPreferencesUtils.setConfigString(this, SharedPreferencesUtils.KEY_USER_BAR_ID, bar_uuid);
+            }
             Intent intent = new Intent();
             intent.putExtra(Constant.INTENT_BAR_NAME, barName);
             setResult(Activity.RESULT_OK, intent);
