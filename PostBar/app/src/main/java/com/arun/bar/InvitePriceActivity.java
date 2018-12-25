@@ -52,7 +52,7 @@ public class InvitePriceActivity extends BaseActivity {
         bar_uuid = SharedPreferencesUtils.getConfigString(this, SharedPreferencesUtils.KEY_USER_BAR_ID);
     }
 
-    public void getCode(String joinBarFee) {
+    public void getCode(int joinBarFee) {
         showProgressBar();
         Call<ResponseBody> call = RetrofitInit.getApi().getInviteQRCode(joinBarFee, bar_uuid);
         call.enqueue(new Callback<ResponseBody>() {
@@ -83,7 +83,13 @@ public class InvitePriceActivity extends BaseActivity {
 
     public void createPoster(View view) {
         if (!TextUtils.isEmpty(invite_price.getText())) {
-            getCode(invite_price.getText().toString());
+            double dPrice = Double.valueOf(invite_price.getText().toString());
+            int price = (int) (dPrice * 100);
+            if (price > 0) {
+                getCode(price);
+            } else {
+                showToast(R.string.invite_price_tip);
+            }
         } else {
             showToast(R.string.invite_save_tips);
         }

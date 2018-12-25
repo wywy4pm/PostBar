@@ -17,4 +17,6 @@ public interface CommonRequestListener<T> {
 
     void onError(int errorType, @StringRes int errorMsg);
 
+    void onError(int errorType, String errorMsg);
+
 }

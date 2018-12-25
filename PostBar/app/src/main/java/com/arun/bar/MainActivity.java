@@ -48,7 +48,6 @@ public class MainActivity extends BaseActivity {
     }
 
     public void initView() {
-        setTitleName(barName);
         viewPager = findViewById(R.id.viewPager);
         main_btn = findViewById(R.id.main_btn);
         mine_btn = findViewById(R.id.mine_btn);

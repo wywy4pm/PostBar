@@ -4,6 +4,7 @@ package com.arun.bar.common;
  * Created by WY on 2017/4/14.
  */
 public class ErrorCode {
+    public static final int COMMON_ERROR = -1;
     public static final int NETWORK_ERROR = -100;//网络异常
     public static final int DATA_FORMAT_ERROR = -200;//数据解析异常
     public static final int SYSTEM_ERROR = -300;//系统异常

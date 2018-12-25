@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.arun.bar.R;
 import com.arun.bar.adapter.PostAdapter;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainFragment extends BaseFragment implements CommonView<PostListData> {
+    private TextView titleView;
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
     private List<PostItem> postList = new ArrayList<>();
@@ -52,6 +54,7 @@ public class MainFragment extends BaseFragment implements CommonView<PostListDat
 
     @Override
     protected void initView() {
+        titleView = findViewById(R.id.title_name);
         recyclerView = findViewById(R.id.recyclerView);
         postAdapter = new PostAdapter(getActivity(), postList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -91,6 +94,9 @@ public class MainFragment extends BaseFragment implements CommonView<PostListDat
     protected void initData() {
         if (getArguments() != null && getArguments().containsKey(Constant.INTENT_BAR_NAME)) {
             barName = getArguments().getString(Constant.INTENT_BAR_NAME);
+            if (!TextUtils.isEmpty(barName)) {
+                titleView.setText(barName);
+            }
         }
         if (getActivity() != null) {
             bar_uuid = SharedPreferencesUtils.getConfigString(getActivity(), SharedPreferencesUtils.KEY_USER_BAR_ID);

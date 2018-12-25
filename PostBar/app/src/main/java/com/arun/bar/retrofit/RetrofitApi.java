@@ -51,7 +51,7 @@ public interface RetrofitApi {
     Observable<CommonApiResponse> postAdd(@Body PostAddRequest postAddRequest, @Query("imgs") List<String> imgs);
 
     @GET(RetrofitUrl.INVITE_QR_CODE)
-    Call<ResponseBody> getInviteQRCode(@Query("total_fee") String total_fee, @Query("product_id") String product_id);
+    Call<ResponseBody> getInviteQRCode(@Query("total_fee") int total_fee, @Query("product_id") String product_id);
 
     @Headers({"Content-Type:application/json;charset=UTF-8"})
     @POST(RetrofitUrl.REPLY_LIST)
@@ -63,5 +63,5 @@ public interface RetrofitApi {
 
     @Headers({"Content-Type:application/json;charset=UTF-8"})
     @POST(RetrofitUrl.USER_JOIN_BAR)
-    Observable<CommonApiResponse<BarBean>> joinBar(@Query("user_uuid") String user_uuid);
+    Observable<CommonApiResponse<BarBean>> joinBar(@Query("user_uuid") String user_uuid, @Query("invite_code") String invite_code);
 }

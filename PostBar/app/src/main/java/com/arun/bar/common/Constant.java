@@ -1,7 +1,7 @@
 package com.arun.bar.common;
 
 public class Constant {
-    public static final String API_BASE_URL = "http://4dy84x.natappfree.cc/sharebar/";
+    public static final String API_BASE_URL = "http://69q9a4.natappfree.cc/sharebar/";
 
     public static final int TAB_INDEX_MAIN = 0;
     public static final int TAB_INDEX_MINE = 1;

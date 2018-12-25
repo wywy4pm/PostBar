@@ -42,4 +42,11 @@ public abstract class RequestListenerImpl implements CommonRequestListener<Commo
             mvpView.onError(errorType, errorMsg);
         }
     }
+
+    @Override
+    public void onError(int errorType, String errorMsg) {
+        if (mvpView != null) {
+            mvpView.onError(errorType, errorMsg);
+        }
+    }
 }

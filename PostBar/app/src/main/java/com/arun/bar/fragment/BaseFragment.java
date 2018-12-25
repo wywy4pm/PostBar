@@ -84,7 +84,7 @@ public abstract class BaseFragment extends Fragment implements MvpView{
 
     @Override
     public void onError(int errorType, String errorMsg) {
-
+        showToast(errorMsg);
     }
 
     @Override

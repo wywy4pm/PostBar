@@ -109,7 +109,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
 
     @Override
     public void onError(int errorType, String errorMsg) {
-
+        showToast(errorMsg);
     }
 
     @Override

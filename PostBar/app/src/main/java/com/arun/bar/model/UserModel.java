@@ -32,6 +32,6 @@ public class UserModel extends BaseModel {
     }
 
     public void joinBar(String user_uuid, String inviteCode, CommonRequestListener listener) {
-        request(RetrofitInit.getApi().joinBar(user_uuid), listener);
+        request(RetrofitInit.getApi().joinBar(user_uuid, inviteCode), listener);
     }
 }

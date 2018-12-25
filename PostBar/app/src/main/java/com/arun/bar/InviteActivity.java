@@ -19,9 +19,9 @@ public class InviteActivity extends BaseActivity implements CommonView2<BarBean>
     private EditText inviteCodeEdit;
     private InvitePresenter invitePresenter;
 
-    public static void jumpToInvite(Context context) {
+    public static void jumpToInviteForResult(Context context, int requestCode) {
         Intent intent = new Intent(context, InviteActivity.class);
-        context.startActivity(intent);
+        ((Activity) context).startActivityForResult(intent, requestCode);
     }
 
     @Override
@@ -56,9 +56,9 @@ public class InviteActivity extends BaseActivity implements CommonView2<BarBean>
     public void refresh(BarBean data) {
         if (data != null) {
             String barName = data.bar_name;
-            String barId = data.bar_uuid;
+            String barId = data.uuid;
             if (!TextUtils.isEmpty(barId) && !TextUtils.isEmpty(barName)) {
-                showToast(R.string.tips_bar_add_success);
+                showToast(R.string.tips_bar_join_success);
                 SharedPreferencesUtils.setConfigString(this, SharedPreferencesUtils.KEY_USER_BAR_ID, barId);
                 Intent intent = new Intent();
                 intent.putExtra(Constant.INTENT_BAR_NAME, barName);

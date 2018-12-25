@@ -12,7 +12,6 @@ import android.widget.EditText;
 import com.arun.bar.common.Constant;
 import com.arun.bar.presenter.BarPresenter;
 import com.arun.bar.utils.SharedPreferencesUtils;
-import com.arun.bar.view.CommonView2;
 import com.arun.bar.view.CommonView3;
 
 public class AddBarActivity extends BaseActivity implements CommonView3 {

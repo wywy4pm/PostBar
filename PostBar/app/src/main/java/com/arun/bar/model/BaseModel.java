@@ -1,5 +1,7 @@
 package com.arun.bar.model;
 
+import android.text.TextUtils;
+
 import com.arun.bar.bean.CommonApiResponse;
 import com.arun.bar.common.ErrorCode;
 import com.arun.bar.exception.ApiException;
@@ -49,9 +51,11 @@ public class BaseModel {
                 public void onNext(CommonApiResponse object) {
                     if (listener != null) {
                         if (object != null) {
-                            if (object.status == ErrorCode.SUCCESS
-                                    || object.status == ErrorCode.NO_DATA) {
+                            if (object.status == ErrorCode.SUCCESS) {
                                 listener.onSuccess(object);
+                                if (!TextUtils.isEmpty(object.msg)) {
+                                    listener.onError(ErrorCode.COMMON_ERROR, object.msg);
+                                }
                             }
                         }
                     }

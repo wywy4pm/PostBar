@@ -20,7 +20,7 @@
         android:background="@drawable/shape_gray_radius"
         android:gravity="start|center_vertical"
         android:hint="@string/invite_price_tips"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:paddingBottom="8dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"

@@ -58,7 +58,7 @@ public class JoinBarActivity extends BaseActivity {
     }
 
     public void joinBar(View view) {
-        InviteActivity.jumpToInvite(this);
+        InviteActivity.jumpToInviteForResult(this, Constant.REQUEST_CODE_ADD_BAR);
     }
 
     @Override
