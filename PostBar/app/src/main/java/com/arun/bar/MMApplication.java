@@ -28,8 +28,8 @@ public class MMApplication extends Application implements Application.ActivityLi
     //设置OSS数据中心域名或者cname域名
     public static final String OSS_BUCKET_ENDPOINT = "http://oss-cn-hangzhou.aliyuncs.com/";
     //Key
-    private static final String ACCESS_KEY_ID = "LTAI2NTBH0TVhoph";
-    private static final String ACCESS_KEY_SECRET = "CF0bPVfcbFYY8SJqRUwHS4WBqMugrZ";
+    private static final String ACCESS_KEY_ID = "";
+    private static final String ACCESS_KEY_SECRET = "";
     public static OSS oss;
 
     public int count = 0;
